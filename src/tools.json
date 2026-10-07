@@ -1,0 +1,144 @@
+{
+  "version": "0.2.0",
+  "updated": "2026-10-07",
+  "credit_rub": 0.1,
+  "server": {
+    "mcp_url": "https://srezai.ru/api/mcp",
+    "rest_base": "https://srezai.ru",
+    "docs": "https://srezai.ru/docs/mcp"
+  },
+  "tools": [
+    {
+      "name": "web_search",
+      "purpose": "Ссылки, факты, сниппеты",
+      "purpose_en": "Search the web: links, facts, snippets",
+      "price": "1 кредит за вызов",
+      "price_en": "1 credit per call",
+      "billable": true,
+      "limit": "≤30 результатов",
+      "key_params": "query, num, depth (flash|auto), language (auto|ru|en), includeDomains/excludeDomains (≤10), timeRange, publishedAfter/publishedBefore, excerpts, chunksPerSource, category",
+      "when_not": "нужен полный текст известной страницы — это read_url"
+    },
+    {
+      "name": "image_search",
+      "purpose": "Картинки и прямые ссылки на файлы",
+      "purpose_en": "Find images and direct file URLs",
+      "price": "1 кредит за вызов",
+      "price_en": "1 credit per call",
+      "billable": true,
+      "limit": "1–48 картинок",
+      "key_params": "query, num, timeRange, safe",
+      "when_not": "нужен текст страницы — это read_url"
+    },
+    {
+      "name": "read_url",
+      "purpose": "Текст известной страницы",
+      "purpose_en": "Read the text of a page whose URL you already have",
+      "price": "1 кредит за вызов",
+      "price_en": "1 credit per call",
+      "billable": true,
+      "limit": "200–50 000 символов за окно",
+      "key_params": "url, maxChars, offset, engine (auto|fast|dynamic|stealth), fresh",
+      "when_not": "адрес ещё неизвестен — сначала web_search"
+    },
+    {
+      "name": "read_urls",
+      "purpose": "Текст нескольких известных страниц сразу",
+      "purpose_en": "Read several known pages in one batch",
+      "price": "1 кредит за каждую ссылку",
+      "price_en": "1 credit per link",
+      "billable": true,
+      "limit": "1–10 ссылок",
+      "key_params": "urls, maxChars (общий для всех), engine, fresh",
+      "when_not": "нужны отдельные поля, а не текст — это extract; страница одна — read_url"
+    },
+    {
+      "name": "extract",
+      "purpose": "2–5 конкретных значений со страницы по JSON-схеме",
+      "purpose_en": "Pull a few specific values off a page with a JSON schema",
+      "price": "2 кредита за ссылку",
+      "price_en": "2 credits per link",
+      "billable": true,
+      "limit": "1–10 ссылок",
+      "key_params": "url|urls, schema, instruction, engine",
+      "when_not": "заранее неизвестно, что искать — read_url дешевле вдвое"
+    },
+    {
+      "name": "fetch_page",
+      "purpose": "Увидеть вёрстку, типографику, сломанную страницу (скриншот)",
+      "purpose_en": "See the layout, typography or a broken page as a screenshot",
+      "price": "3 кредита; 1, если браузер не отрендерил страницу",
+      "price_en": "3 credits; 1 if the browser could not render the page",
+      "billable": true,
+      "limit": "200–50 000 символов текста",
+      "key_params": "url, maxChars",
+      "when_not": "нужен только текст — fetch_page избыточен"
+    },
+    {
+      "name": "map",
+      "purpose": "Карта сайта: разделы, адреса, объём",
+      "purpose_en": "Map a site: sections, URLs, how large it is",
+      "price": "1 кредит за каждые 10 адресов, минимум 1",
+      "price_en": "1 credit per 10 URLs returned, minimum 1",
+      "billable": true,
+      "limit": "1–200 адресов",
+      "key_params": "url, limit, search, selectPaths, excludePaths, includeSubdomains, intent",
+      "when_not": "нужен текст страниц — это crawl; одна страница — read_url"
+    },
+    {
+      "name": "crawl",
+      "purpose": "Обойти раздел сайта и прочитать его страницы",
+      "purpose_en": "Walk a section of a site and read its pages",
+      "price": "карта + 1 кредит за каждую прочитанную страницу",
+      "price_en": "map + 1 credit per page read",
+      "billable": true,
+      "limit": "1–20 страниц",
+      "key_params": "url, limit, search (по тексту), selectPaths (по адресу), excludePaths, intent",
+      "when_not": "нужен только список адресов — map дешевле"
+    },
+    {
+      "name": "verify_claim",
+      "purpose": "Проверить одно утверждение с дословными цитатами",
+      "purpose_en": "Check one claim and get a verdict with verbatim quotes",
+      "price": "8 кредитов за вызов",
+      "price_en": "8 credits per call",
+      "billable": true,
+      "limit": "2–5 источников",
+      "key_params": "claim, query, language, timeRange, maxSources",
+      "when_not": "нужен обзор темы — это deep_research; нужен текст страницы — read_url"
+    },
+    {
+      "name": "answer_search",
+      "purpose": "Готовый связный ответ по нескольким источникам",
+      "purpose_en": "Get one synthesized answer across several sources",
+      "price": "3 (fast) / 5 (balanced) / 10 (deep) кредитов",
+      "price_en": "3 (fast) / 5 (balanced) / 10 (deep) credits",
+      "billable": true,
+      "limit": "2 (fast) – 10 (deep) страниц",
+      "key_params": "query, depth (fast|balanced|deep), language",
+      "when_not": "нужен список ссылок — web_search в 20 раз дешевле; нужен один факт — тоже мимо"
+    },
+    {
+      "name": "deep_research",
+      "purpose": "Многошаговое исследование темы с готовым ответом и источниками",
+      "purpose_en": "Run multi-step research and get a finished answer with sources",
+      "price": "20 кредитов + 3 за каждую 1000 output-токенов",
+      "price_en": "20 credits + 3 per 1000 output tokens",
+      "billable": true,
+      "limit": "обычно 3–10 минут, до 42",
+      "key_params": "query, ticket (дозабор готового ответа — бесплатно)",
+      "when_not": "нужен один факт или список ссылок — это web_search"
+    },
+    {
+      "name": "get_usage",
+      "purpose": "Баланс, остаток квоты, расход и прайс",
+      "purpose_en": "Check balance, remaining quota, spend and the price list",
+      "price": "бесплатно, квоту не расходует",
+      "price_en": "free; does not use the quota",
+      "billable": false,
+      "limit": "",
+      "key_params": "verbose",
+      "when_not": "не нужен перед каждым вызовом"
+    }
+  ]
+}

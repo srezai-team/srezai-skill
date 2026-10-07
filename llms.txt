@@ -1,0 +1,19 @@
+# srezai — web access for AI agents
+
+12 tools over MCP at https://srezai.ru/api/mcp. Runet-first coverage,
+PDF, screenshots, site crawls, schema extraction, claim verification with quotes.
+
+- web_search: Search the web: links, facts, snippets. Price: 1 credit per call.
+- image_search: Find images and direct file URLs. Price: 1 credit per call.
+- read_url: Read the text of a page whose URL you already have. Price: 1 credit per call.
+- read_urls: Read several known pages in one batch. Price: 1 credit per link.
+- extract: Pull a few specific values off a page with a JSON schema. Price: 2 credits per link.
+- fetch_page: See the layout, typography or a broken page as a screenshot. Price: 3 credits; 1 if the browser could not render the page.
+- map: Map a site: sections, URLs, how large it is. Price: 1 credit per 10 URLs returned, minimum 1.
+- crawl: Walk a section of a site and read its pages. Price: map + 1 credit per page read.
+- verify_claim: Check one claim and get a verdict with verbatim quotes. Price: 8 credits per call.
+- answer_search: Get one synthesized answer across several sources. Price: 3 (fast) / 5 (balanced) / 10 (deep) credits.
+- deep_research: Run multi-step research and get a finished answer with sources. Price: 20 credits + 3 per 1000 output tokens.
+- get_usage: Check balance, remaining quota, spend and the price list. Price: free; does not use the quota.
+
+Generated from src/tools.json v0.2.0.

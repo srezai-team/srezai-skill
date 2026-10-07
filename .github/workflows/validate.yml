@@ -1,0 +1,35 @@
+name: validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  # Ночная сверка с живым сервером: список инструментов меняется на сервере,
+  # а не в репозитории, поэтому дрейф ловится только регулярной проверкой.
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Артефакты совпадают с src/tools.json
+        run: node scripts/generate.mjs --check
+
+      - name: Самопроверка пакета (секреты, LF, frontmatter, суммы, ссылки)
+        run: bash scripts/selftest.sh
+
+      # tools/list отвечает и анонимно (проверено 07.10.2026: 12 инструментов без ключа),
+      # поэтому секрет не обязателен. Задан SRZ_API_KEY — сверка идёт под ключом.
+      - name: Список инструментов совпадает с живым сервером
+        env:
+          SRZ_API_KEY: ${{ secrets.SRZ_API_KEY }}
+          SRZ_REQUIRE_KEY: "1"
+        run: node scripts/check-drift.mjs

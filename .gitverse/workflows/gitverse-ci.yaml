@@ -1,0 +1,36 @@
+# CI для GitVerse Actions. Файл должен быть в LF: CRLF ломает job на раннере.
+# Контексты GitVerse — gitverse.ref / gitverse.event_name, не github.*.
+name: validate
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    # Если пул раннеров GitVerse ожидает другую метку, меняется только эта строка.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Артефакты совпадают с src/tools.json
+        run: node scripts/generate.mjs --check
+
+      - name: Самопроверка пакета (секреты, LF, frontmatter, суммы, ссылки)
+        run: bash scripts/selftest.sh
+
+      # Секрет не обязателен: tools/list отвечает анонимно (проверено 07.10.2026).
+      # Если SRZ_API_KEY задан в секретах GitVerse — сверка идёт под ключом.
+      - name: Список инструментов совпадает с живым сервером
+        env:
+          SRZ_API_KEY: ${{ secrets.SRZ_API_KEY }}
+          SRZ_REQUIRE_KEY: "1"
+        run: node scripts/check-drift.mjs
