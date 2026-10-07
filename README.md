@@ -1,5 +1,12 @@
 # srezai-skill — web access for AI agents over MCP
 
+**English** · [Русский](README.ru.md)
+
+> **Кратко по-русски.** MCP-сервер веб-доступа для ИИ-агентов: поиск, чтение страниц, обход
+> сайтов, извлечение по JSON-схеме, проверка фактов с цитатами. Рунет — в первую очередь.
+> 12 инструментов, 1 кредит = 0,10 ₽, ключ берётся в кабинете [srezai.ru](https://srezai.ru).
+> Подробно — [README.ru.md](README.ru.md).
+
 **An MCP server and skill for AI agents: web search, page reading, site maps and crawls,
 screenshots, PDF, JSON-schema extraction and claim verification with quotes — Runet
 (Russian web) coverage first.**
