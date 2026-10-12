@@ -18,7 +18,7 @@ or as a plain markdown skill file.
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](CHANGELOG.md)
 [![MCP tools](https://img.shields.io/badge/MCP_tools-12-orange.svg)](docs/tools.md)
-[![CI](https://github.com/srezai-team/srezai-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-skill/actions/workflows/validate.yml)
+[![CI](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 **Topics:** `mcp` · `mcp-server` · `ai-agents` · `llm-tools` · `web-search` · `web-scraping` ·
@@ -73,8 +73,8 @@ stdio; it needs Node 18+.
 ### 3. As a skill file
 
 ```bash
-git clone https://github.com/srezai-team/srezai-skill.git
-cd srezai-skill
+git clone https://github.com/srezai-team/srezai-web-search-pro-skill.git
+cd srezai-web-search-pro-skill
 bash scripts/install.sh          # checks the package, installs to $DSH_HOME/skills/srezai-web.md
 ```
 

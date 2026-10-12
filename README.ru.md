@@ -1,4 +1,4 @@
-# srezai-skill — веб-доступ для ИИ-агентов через MCP
+# srezai-web-search-pro-skill — веб-доступ для ИИ-агентов через MCP
 
 [English](README.md) · **Русский**
 
@@ -63,8 +63,8 @@ stdio, нужен Node 18+.
 ### 3. Как файл скилла
 
 ```bash
-git clone https://github.com/srezai-team/srezai-skill.git
-cd srezai-skill
+git clone https://github.com/srezai-team/srezai-web-search-pro-skill.git
+cd srezai-web-search-pro-skill
 bash scripts/install.sh          # прогоняет проверки и ставит скилл в $DSH_HOME/skills/srezai-web.md
 ```
 
