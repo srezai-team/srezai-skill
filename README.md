@@ -1,4 +1,4 @@
-# srezai-skill — web access for AI agents over MCP
+# srezai-web-search-pro-skill — web access for AI agents over MCP
 
 **English** · [Русский](README.ru.md)
 
