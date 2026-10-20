@@ -4,7 +4,7 @@
 
 > **Кратко по-русски.** MCP-сервер веб-доступа для ИИ-агентов: поиск, чтение страниц, обход
 > сайтов, извлечение по JSON-схеме, проверка фактов с цитатами. Рунет — в первую очередь.
-> 12 инструментов, 1 кредит = 0,10 ₽, ключ берётся в кабинете [srezai.ru](https://srezai.ru).
+> 13 инструментов, 1 кредит = 0,10 ₽, ключ берётся в кабинете [srezai.ru](https://srezai.ru).
 > Подробно — [README.ru.md](README.ru.md).
 
 **An MCP server and skill for AI agents: web search, page reading, site maps and crawls,
@@ -16,8 +16,8 @@ costs, and what to do when one fails. Works with Claude Code, Cursor, Codex, any
 or as a plain markdown skill file.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](CHANGELOG.md)
-[![MCP tools](https://img.shields.io/badge/MCP_tools-12-orange.svg)](docs/tools.md)
+[![Version](https://img.shields.io/badge/version-0.3.0-green.svg)](CHANGELOG.md)
+[![MCP tools](https://img.shields.io/badge/MCP_tools-13-orange.svg)](docs/tools.md)
 [![CI](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -30,11 +30,11 @@ or as a plain markdown skill file.
 An agent that needs data from the outside world has four problems: it does not know which
 source to trust, it cannot read what it fetched, it cannot prove what it found, and it burns
 money by guessing. This repository is the procedure that answers all four against one MCP
-server at `https://srezai.ru/api/mcp` — 12 tools, documented to the credit.
+server at `https://srezai.ru/api/mcp` — 13 tools, documented to the credit.
 
 - `SKILL.md` — the skill an agent loads: channel detection, task-to-tool map, cost ladder,
   error recovery, anti-patterns, and a Russian-web section.
-- `src/tools.json` — the single source of truth for those 12 tools, their limits and prices.
+- `src/tools.json` — the single source of truth for those 13 tools, their limits and prices.
 - Machine-readable companions: [`docs/tools.md`](docs/tools.md) and [`llms.txt`](llms.txt).
 
 ## Install
@@ -101,6 +101,7 @@ your behalf and never asks you to paste a key into a model prompt.
 | Check one claim and get a verdict with verbatim quotes | `verify_claim` | 8 credits per call |
 | Get one synthesized answer across several sources | `answer_search` | 3 (fast) / 5 (balanced) / 10 (deep) credits |
 | Run multi-step research and get a finished answer with sources | `deep_research` | 20 credits + 3 per 1000 output tokens |
+| YouTube video text: transcripts, summaries, quotes | `yt_srt` | 1 credit per video |
 | Check balance, remaining quota, spend and the price list | `get_usage` | free; does not use the quota |
 <!-- /GENERATED:tools-readme -->
 
@@ -185,7 +186,7 @@ verification and research on top.
 
 ```
 SKILL.md            the skill itself (English body + Russian-web section)
-src/tools.json      source of truth: 12 tools, limits, prices, anti-patterns
+src/tools.json      source of truth: 13 tools, limits, prices, anti-patterns
 scripts/generate.mjs    builds the tables here, docs/tools.md, llms.txt, VERSION, SHA256SUMS.txt
 scripts/check-drift.mjs compares the published tool list with the live server
 scripts/selftest.sh     secrets, line endings, strict-YAML frontmatter, checksums, links

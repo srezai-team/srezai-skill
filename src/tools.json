@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "updated": "2026-10-07",
+  "version": "0.3.0",
+  "updated": "2026-10-20",
   "credit_rub": 0.1,
   "server": {
     "mcp_url": "https://srezai.ru/api/mcp",
@@ -128,6 +128,17 @@
       "limit": "обычно 3–10 минут, до 42",
       "key_params": "query, ticket (дозабор готового ответа — бесплатно)",
       "when_not": "нужен один факт или список ссылок — это web_search"
+    },
+    {
+      "name": "yt_srt",
+      "purpose": "Текст ролика YouTube: субтитры, конспект, цитата",
+      "purpose_en": "YouTube video text: transcripts, summaries, quotes",
+      "price": "1 кредит за ролик",
+      "price_en": "1 credit per video",
+      "billable": true,
+      "limit": "≤5 роликов за вызов, окно по from/to, таймкоды",
+      "key_params": "videos (≤5), languages, timestamps, from, to, maxChars",
+      "when_not": "нужны видео с других площадок (VK, Rutube) — их нет; или нужен сам файл видео"
     },
     {
       "name": "get_usage",

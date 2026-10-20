@@ -1,6 +1,6 @@
 # Инструменты srezai — справочник
 
-> Сгенерировано из `src/tools.json` (версия 0.2.0, 2026-10-07). Руками не править:
+> Сгенерировано из `src/tools.json` (версия 0.3.0, 2026-10-20). Руками не править:
 > правка источника + `node scripts/generate.mjs`.
 
 MCP: `https://srezai.ru/api/mcp` · REST: `https://srezai.ru` · доки: https://srezai.ru/docs/mcp
@@ -18,6 +18,7 @@ MCP: `https://srezai.ru/api/mcp` · REST: `https://srezai.ru` · доки: https
 | `verify_claim` | Проверить одно утверждение с дословными цитатами | 8 кредитов за вызов | 2–5 источников | нужен обзор темы — это deep_research; нужен текст страницы — read_url |
 | `answer_search` | Готовый связный ответ по нескольким источникам | 3 (fast) / 5 (balanced) / 10 (deep) кредитов | 2 (fast) – 10 (deep) страниц | нужен список ссылок — web_search в 20 раз дешевле; нужен один факт — тоже мимо |
 | `deep_research` | Многошаговое исследование темы с готовым ответом и источниками | 20 кредитов + 3 за каждую 1000 output-токенов | обычно 3–10 минут, до 42 | нужен один факт или список ссылок — это web_search |
+| `yt_srt` | Текст ролика YouTube: субтитры, конспект, цитата | 1 кредит за ролик | ≤5 роликов за вызов, окно по from/to, таймкоды | нужны видео с других площадок (VK, Rutube) — их нет; или нужен сам файл видео |
 | `get_usage` | Баланс, остаток квоты, расход и прайс | бесплатно, квоту не расходует | — | не нужен перед каждым вызовом |
 
 ## Параметры
@@ -33,4 +34,5 @@ MCP: `https://srezai.ru/api/mcp` · REST: `https://srezai.ru` · доки: https
 - **`verify_claim`** — claim, query, language, timeRange, maxSources
 - **`answer_search`** — query, depth (fast|balanced|deep), language
 - **`deep_research`** — query, ticket (дозабор готового ответа — бесплатно)
+- **`yt_srt`** — videos (≤5), languages, timestamps, from, to, maxChars
 - **`get_usage`** — verbose

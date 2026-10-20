@@ -2,6 +2,18 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions are semantic.
 
+## [0.3.0] — 2026-10-20
+
+### Added
+
+- `yt_srt` в `src/tools.json`: текст ролика YouTube (ручные или авто-субтитры) прямо
+  в контекст агента — 1 кредит за ролик, до 5 роликов за вызов, окно по `from`/`to`,
+  таймкоды, продолжение без повторной оплаты. Видео и звук не скачиваются.
+- Сценарий «найти ролик через `web_search` (`includeDomains: youtube.com`), затем
+  забрать текст через `yt_srt`» — в карту задач.
+- Артефакты перегенерированы из источника: `SKILL.md`, `docs/tools.md`, `llms.txt`,
+  `VERSION`, `SHA256SUMS.txt`.
+
 ## [0.2.0] — 2026-10-07
 
 First public release. The skill is usable by any agent that supports a skills directory

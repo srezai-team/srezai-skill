@@ -1,6 +1,6 @@
 # srezai — web access for AI agents
 
-12 tools over MCP at https://srezai.ru/api/mcp. Runet-first coverage,
+13 tools over MCP at https://srezai.ru/api/mcp. Runet-first coverage,
 PDF, screenshots, site crawls, schema extraction, claim verification with quotes.
 
 - web_search: Search the web: links, facts, snippets. Price: 1 credit per call.
@@ -14,6 +14,7 @@ PDF, screenshots, site crawls, schema extraction, claim verification with quotes
 - verify_claim: Check one claim and get a verdict with verbatim quotes. Price: 8 credits per call.
 - answer_search: Get one synthesized answer across several sources. Price: 3 (fast) / 5 (balanced) / 10 (deep) credits.
 - deep_research: Run multi-step research and get a finished answer with sources. Price: 20 credits + 3 per 1000 output tokens.
+- yt_srt: YouTube video text: transcripts, summaries, quotes. Price: 1 credit per video.
 - get_usage: Check balance, remaining quota, spend and the price list. Price: free; does not use the quota.
 
-Generated from src/tools.json v0.2.0.
+Generated from src/tools.json v0.3.0.
