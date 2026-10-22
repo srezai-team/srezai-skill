@@ -17,7 +17,7 @@ costs, and what to do when one fails. Works with Claude Code, Cursor, Codex, any
 or as a plain markdown skill file.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.0-green.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.1-green.svg)](CHANGELOG.md)
 [![MCP tools](https://img.shields.io/badge/MCP_tools-13-orange.svg)](docs/tools.md)
 [![CI](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -113,7 +113,7 @@ your behalf and never asks you to paste a key into a model prompt.
 | Check one claim and get a verdict with verbatim quotes | `verify_claim` | 8 credits per call |
 | Get one synthesized answer across several sources | `answer_search` | 3 (fast) / 5 (balanced) / 10 (deep) credits |
 | Run multi-step research and get a finished answer with sources | `deep_research` | 20 credits + 3 per 1000 output tokens |
-| YouTube video text: transcripts, summaries, quotes | `yt_srt` | 1 credit per video |
+| YouTube video text: transcripts, summaries, quotes | `yt_srt` | 1 credit per video; 15 with speaker labeling |
 | Check balance, remaining quota, spend and the price list | `get_usage` | free; does not use the quota |
 <!-- /GENERATED:tools-readme -->
 
