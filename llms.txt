@@ -17,4 +17,4 @@ PDF, screenshots, site crawls, schema extraction, claim verification with quotes
 - yt_srt: YouTube video text: transcripts, summaries, quotes. Price: 1 credit per video.
 - get_usage: Check balance, remaining quota, spend and the price list. Price: free; does not use the quota.
 
-Generated from src/tools.json v0.3.0.
+Generated from src/tools.json v0.4.0.

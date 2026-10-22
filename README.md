@@ -4,7 +4,8 @@
 
 > **Кратко по-русски.** MCP-сервер веб-доступа для ИИ-агентов: поиск, чтение страниц, обход
 > сайтов, извлечение по JSON-схеме, проверка фактов с цитатами. Рунет — в первую очередь.
-> 13 инструментов, 1 кредит = 0,10 ₽, ключ берётся в кабинете [srezai.ru](https://srezai.ru).
+> 13 инструментов, 1 кредит = 0,10 ₽, новому ключу — 20 стартовых кредитов; агент
+> сам регистрирует ключ из чата и отдаёт ссылку на оплату без входа.
 > Подробно — [README.ru.md](README.ru.md).
 
 **An MCP server and skill for AI agents: web search, page reading, site maps and crawls,
@@ -16,7 +17,7 @@ costs, and what to do when one fails. Works with Claude Code, Cursor, Codex, any
 or as a plain markdown skill file.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.3.0-green.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.0-green.svg)](CHANGELOG.md)
 [![MCP tools](https://img.shields.io/badge/MCP_tools-13-orange.svg)](docs/tools.md)
 [![CI](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -38,6 +39,17 @@ server at `https://srezai.ru/api/mcp` — 13 tools, documented to the credit.
 - Machine-readable companions: [`docs/tools.md`](docs/tools.md) and [`llms.txt`](llms.txt).
 
 ## Install
+
+### 0. Any agent that reads skills — one command
+
+```bash
+npx skills add srezai-team/srezai-web-search-pro-skill -g -y
+```
+
+Works with Claude Code, Cursor, Codex, Windsurf and 80+ agents (the CLI finds the
+installed ones itself; `npx skills add <repo> --list` shows what is inside). The skill
+carries the trial → key → starter credits → payment flow, so the agent can take a
+human from the free trial to a paid key without leaving the chat.
 
 ### 1. Any MCP client over HTTP (streamable)
 

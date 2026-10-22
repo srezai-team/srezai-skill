@@ -2,6 +2,25 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions are semantic.
 
+## [0.4.0] — 2026-10-22
+
+### Added
+
+- **Step 0.5 — the path from trial to payment** in `SKILL.md`: no key → 25-call trial →
+  `[trial_limit_reached]` → key from the chat (`quick-register`) → 20 starter credits →
+  `loginUrl` for a top-up page that needs no login or password (24 hours) → 100 ₽
+  welcome bonus after Telegram confirmation.
+- Honest limits in the same section: `deep_research` is disabled in the trial and on
+  starter credits (`[requires_key]`), and existing emails never get a chat key
+  (`[account_exists]`, account-takeover protection). New rows for both codes in the
+  error table and two new anti-patterns ("registration is broken", retrying research).
+- README: skills CLI install (`npx skills add …`) as the first, simplest install path.
+
+### Changed
+
+- Registration flow on the server: a key is issued only to a **new** account; starter
+  credits are 20 (2 ₽), one per account.
+
 ## [0.3.0] — 2026-10-20
 
 ### Added

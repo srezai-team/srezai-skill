@@ -1,6 +1,6 @@
 {
-  "version": "0.3.0",
-  "updated": "2026-10-20",
+  "version": "0.4.0",
+  "updated": "2026-10-22",
   "credit_rub": 0.1,
   "server": {
     "mcp_url": "https://srezai.ru/api/mcp",

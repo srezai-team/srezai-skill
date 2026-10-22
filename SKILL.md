@@ -4,8 +4,8 @@ description: "Веб-доступ через MCP-сервер srezai: поиск
 metadata:
   type: skill
   project: srezai
-  version: "0.3.0"
-  updated: 2026-10-20
+  version: "0.4.0"
+  updated: 2026-10-22
 ---
 
 # srezai-web — web access through the srezai MCP server
@@ -36,6 +36,38 @@ Before the first call, work out what you actually have:
    same routes), or the open MIT bridge for stdio-only clients: `npx -y srezai-mcp`
    with `SREZAI_API_KEY` in the environment.
 3. **Neither** → stop and tell the human what is missing. Never fabricate results.
+
+## Step 0.5 — no key yet? the path from trial to payment
+
+The server has a free trial, and this skill is written to take a human from "just
+curious" to a paid key without breaking safety or trust. Follow the order:
+
+1. **No key?** Call the tools without `Authorization`. The trial gives 25 calls per
+   day per IP. Do the actual task immediately — do not ask for an email up front.
+2. **`deep_research` is off without a paid balance.** In the trial and on starter
+   credits the server answers `[requires_key]`. Do not retry: use `web_search`,
+   `read_url` and `answer_search` (all available) and say that this tool turns on
+   after registration or a top-up.
+3. **`[trial_limit_reached]`** → offer to create a key from the chat:
+   `POST https://srezai.ru/api/v1/auth/quick-register` with `{"email": "..."}`.
+   - `ok: true` → keep `apiKey`; give the human `loginUrl` from the answer. It opens a
+     page with the balance and a card/SBP top-up that needs **no login and no
+     password** and lives for 24 hours. The new account already has **20 starter
+     credits** (2 ₽): say so, and that the 100 ₽ welcome bonus comes after confirming
+     Telegram in the dashboard.
+   - `409 account_exists` → this email already has an account, and for safety chat
+     keys are **never** issued to existing accounts. Do not ask for another email and
+     do not retry: tell the human to sign in at https://srezai.ru/dashboard and create
+     a key there.
+4. **`[insufficient_funds]`** → do not retry. Say how much is needed (the error text
+   contains the numbers) and give `loginUrl` while it is alive; otherwise send the
+   human to the dashboard. Telegram-confirmed subscribers receive the welcome bonus.
+5. **Never invent a price, a balance or a registration result.** `get_usage` is free
+   and always tells the truth.
+
+Why this lives in the skill: the most common support question is "the agent says it
+registered me — what now?". The answer has to be a working link with honest limits,
+not a promise.
 
 ## Task → tool
 
@@ -104,6 +136,9 @@ failures. Quote only what came back — a dropped quote means it was not in the 
 | `[rate_limited]` | wait the stated seconds, retry; check `get_usage` and report the numbers |
 | `[upstream_timeout]`, `[search_unavailable]`, `[service_unavailable]` | temporary — retry |
 | `[bad_request]`, `[schema_invalid]`, `[ssrf_blocked]`, `[unauthorized]` | fix the request; a repeat changes nothing |
+| `[requires_key]` | the tool is disabled without a paid balance (`deep_research`); do not retry — use the cheaper tools and point the human to Step 0.5 |
+| `[account_exists]` | the email already has an account; chat keys are not issued for existing accounts — send the human to https://srezai.ru/dashboard |
+| `[insufficient_funds]` | not enough credits; no retry — report the numbers and give the top-up link from Step 0.5 |
 | page did not fit | continue with the `offset` given in the answer, do not compute it |
 | empty result | errors and empty calls are **not billed** — a retry is safe |
 
@@ -121,6 +156,9 @@ Never present a failed call as a result. State the failure and what it means.
 - Twenty `read_url` calls in a loop where one `crawl` would do.
 - Treating search snippets as verified facts without `verify_claim`.
 - Pasting an API key into the chat.
+- Asking for an email a second time, or calling the registration "broken", after
+  `account_exists` — that answer is the account-protection rule, not a failure.
+- Retrying `deep_research` after `[requires_key]` — the answer will not change.
 
 ## Untrusted content
 
