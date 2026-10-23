@@ -17,7 +17,7 @@ costs, and what to do when one fails. Works with Claude Code, Cursor, Codex, any
 or as a plain markdown skill file.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.4.1-green.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.2-green.svg)](CHANGELOG.md)
 [![MCP tools](https://img.shields.io/badge/MCP_tools-13-orange.svg)](docs/tools.md)
 [![CI](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/srezai-team/srezai-web-search-pro-skill/actions/workflows/validate.yml)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
