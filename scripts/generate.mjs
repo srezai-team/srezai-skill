@@ -266,6 +266,7 @@ const pluginJson = JSON.stringify(
     homepage: "https://srezai.ru/docs/skills",
     repository: "https://github.com/srezai-team/srezai-web-search-pro-skill",
     license: "Apache-2.0",
+    icon: "./assets/icon.png",
     keywords: ["web-search", "ai-agents", "mcp", "cli", "runet", "fact-checking"],
     skills: pluginSkills,
   },
@@ -276,6 +277,8 @@ const pluginJson = JSON.stringify(
 const marketplaceJson = JSON.stringify(
   {
     name: "srezai-skills",
+    description:
+      "Официальные скиллы srezai: веб-поиск, чтение страниц, карты сайтов, проверка фактов, ответы и субтитры YouTube — через CLI srezai, MCP или REST.",
     owner: { name: "srezai", url: "https://srezai.ru" },
     plugins: [
       {

@@ -1,5 +1,6 @@
 {
   "name": "srezai-skills",
+  "description": "Официальные скиллы srezai: веб-поиск, чтение страниц, карты сайтов, проверка фактов, ответы и субтитры YouTube — через CLI srezai, MCP или REST.",
   "owner": {
     "name": "srezai",
     "url": "https://srezai.ru"
