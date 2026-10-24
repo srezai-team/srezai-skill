@@ -1,0 +1,21 @@
+name: release
+
+# GitHub Release из тега: карточка релиза для тех, кто ставит скиллы из GitHub,
+# а не из skills.sh. Пакет уже проверен workflow validate на push в main.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  github-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GitHub Release из тега
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes
