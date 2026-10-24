@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "budget": {
+    "descriptions_chars": 1860,
+    "skill_md_chars": 3830,
+    "reference_chars": 4800
+  },
+  "skills": [
+    {
+      "name": "srezai-web",
+      "title": "srezai-web — веб-доступ для агентов: точка входа",
+      "description": "Веб-доступ srezai: какой канал выбрать (CLI `srezai`, MCP, REST), как получить ключ и оплатить, где пробный режим, как экономить кредиты, что делать с 401/402/429. Начинай здесь, если задача про веб, а инструмент неясен. English: srezai setup, keys, billing.",
+      "tools": [
+        "get_usage"
+      ],
+      "order": 0
+    },
+    {
+      "name": "srezai-search",
+      "title": "srezai-search — найти ссылки, факты и картинки",
+      "description": "Поиск в вебе через srezai: ссылки, факты, сниппеты, свежие новости, картинки. Триггеры: «найди», «поищи», «какие источники», «картинки». Полный текст страницы — скилл srezai-read. English: web search, images, links.",
+      "tools": [
+        "web_search",
+        "image_search"
+      ],
+      "order": 1
+    },
+    {
+      "name": "srezai-read",
+      "title": "srezai-read — прочитать страницу, вытащить поля, увидеть вёрстку",
+      "description": "Чтение страниц через srezai: Markdown, PDF и Office, продолжение длинной страницы по offset, пачки ссылок, извлечение 2–5 полей по JSON-схеме, скриншот вёрстки. Триггеры: «прочитай», «что на странице», «вытащи поля». English: read page, extract, screenshot.",
+      "tools": [
+        "read_url",
+        "read_urls",
+        "extract",
+        "fetch_page"
+      ],
+      "order": 2
+    },
+    {
+      "name": "srezai-site",
+      "title": "srezai-site — карта сайта и обход раздела",
+      "description": "Карта и обход сайта через srezai: разделы и адреса, объём, чтение раздела целиком. Триггеры: «какие страницы на сайте», «собери раздел», «обойди документацию», «все события с агрегатора». English: site map, crawl.",
+      "tools": [
+        "map",
+        "crawl"
+      ],
+      "order": 3
+    },
+    {
+      "name": "srezai-research",
+      "title": "srezai-research — проверить факт, собрать ответ, исследовать тему",
+      "description": "Проверка и синтез через srezai: вердикт по факту с цитатами, готовый ответ по источникам, многошаговое исследование с талоном. Триггеры: «проверь факт», «собери ответ», «исследуй тему», «сравни». English: verify claim, answer, deep research.",
+      "tools": [
+        "verify_claim",
+        "answer_search",
+        "deep_research"
+      ],
+      "order": 4
+    },
+    {
+      "name": "srezai-transcript",
+      "title": "srezai-transcript — субтитры и текст видео YouTube",
+      "description": "Субтитры и текст видео YouTube через srezai: конспект, цитата с таймкодом, длинные записи до 200 тыс. символов. Триггеры: «субтитры», «о чём видео», «что сказали в ролике». English: YouTube transcript.",
+      "tools": [
+        "yt_srt"
+      ],
+      "order": 5
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "version": "0.4.2",
-  "updated": "2026-10-23",
+  "version": "0.5.0",
+  "updated": "2026-10-24",
   "credit_rub": 0.1,
   "server": {
     "mcp_url": "https://srezai.ru/api/mcp",
@@ -17,7 +17,14 @@
       "billable": true,
       "limit": "≤30 результатов",
       "key_params": "query, num, depth (flash|auto), language (auto|ru|en), includeDomains/excludeDomains (≤10), timeRange, publishedAfter/publishedBefore, excerpts, chunksPerSource, category",
-      "when_not": "нужен полный текст известной страницы — это read_url"
+      "when_not": "нужен полный текст известной страницы — это read_url",
+      "skill": "srezai-search",
+      "cli": "srezai search \"запрос\" --num 5 --depth auto",
+      "output": "results[]: title, url, content, engine, source, score, publishedDate, relevance",
+      "notes": [
+        "`--depth flash` — один факт, `auto` — обычный поиск",
+        "`--excerpts` тянет текст топ-страниц без отдельного read"
+      ]
     },
     {
       "name": "image_search",
@@ -28,7 +35,13 @@
       "billable": true,
       "limit": "1–48 картинок",
       "key_params": "query, num, timeRange, safe",
-      "when_not": "нужен текст страницы — это read_url"
+      "when_not": "нужен текст страницы — это read_url",
+      "skill": "srezai-search",
+      "cli": "srezai media \"запрос\" --num 3",
+      "output": "images[]: прямые ссылки и метаданные",
+      "notes": [
+        "проси `--num 1`–`3`, если нужна одна картинка: полный список съедает контекст"
+      ]
     },
     {
       "name": "read_url",
@@ -39,7 +52,14 @@
       "billable": true,
       "limit": "200–50 000 символов за окно",
       "key_params": "url, maxChars, offset, engine (auto|fast|dynamic|stealth), fresh",
-      "when_not": "адрес ещё неизвестен — сначала web_search"
+      "when_not": "адрес ещё неизвестен — сначала web_search",
+      "skill": "srezai-read",
+      "cli": "srezai read https://example.com/article --max-chars 4000",
+      "output": "pages[]: url, title, markdown, meta.nextOffset, truncated",
+      "notes": [
+        "продолжение окна — `--offset` из `meta.nextOffset`, не считать самому",
+        "`--engine dynamic` для SPA, `stealth` — крайний случай"
+      ]
     },
     {
       "name": "read_urls",
@@ -50,7 +70,13 @@
       "billable": true,
       "limit": "1–10 ссылок",
       "key_params": "urls, maxChars (общий для всех), engine, fresh",
-      "when_not": "нужны отдельные поля, а не текст — это extract; страница одна — read_url"
+      "when_not": "нужны отдельные поля, а не текст — это extract; страница одна — read_url",
+      "skill": "srezai-read",
+      "cli": "srezai read URL1 URL2 URL3 --max-chars 3000",
+      "output": "pages[] — по элементу на ссылку, неудачные в skipped",
+      "notes": [
+        "`maxChars` общий на все ссылки; длинные дочитывать по одной"
+      ]
     },
     {
       "name": "extract",
@@ -61,7 +87,14 @@
       "billable": true,
       "limit": "1–10 ссылок",
       "key_params": "url|urls, schema, instruction, engine",
-      "when_not": "заранее неизвестно, что искать — read_url дешевле вдвое"
+      "when_not": "заранее неизвестно, что искать — read_url дешевле вдвое",
+      "skill": "srezai-read",
+      "cli": "srezai extract https://example.com/card --schema '{\"title\":\"string\",\"price\":\"number?\"}'",
+      "output": "pages[].data (только запрошенные поля), missing[]",
+      "notes": [
+        "сокращённая схема: `?` — необязательное, `[]` — массив",
+        "не знаешь заранее, что искать — `read` вдвое дешевле"
+      ]
     },
     {
       "name": "fetch_page",
@@ -72,7 +105,14 @@
       "billable": true,
       "limit": "200–50 000 символов текста",
       "key_params": "url, maxChars",
-      "when_not": "нужен только текст — fetch_page избыточен"
+      "when_not": "нужен только текст — fetch_page избыточен",
+      "skill": "srezai-read",
+      "cli": "srezai fetch https://example.com --max-chars 2000",
+      "output": "screenshotUrl, markdown, degraded",
+      "notes": [
+        "это про вёрстку, а не про текст: для текста `read` втрое дешевле",
+        "`degraded=true` — браузер не отрендерил, списано 1 кредит"
+      ]
     },
     {
       "name": "map",
@@ -83,7 +123,14 @@
       "billable": true,
       "limit": "1–200 адресов",
       "key_params": "url, limit, search, selectPaths, excludePaths, includeSubdomains, intent",
-      "when_not": "нужен текст страниц — это crawl; одна страница — read_url"
+      "when_not": "нужен текст страниц — это crawl; одна страница — read_url",
+      "skill": "srezai-site",
+      "cli": "srezai map https://docs.example.com --limit 50 --search api",
+      "output": "url, total, returned, pages[], sections, source, sitemaps",
+      "notes": [
+        "`--select-paths` — по адресу, `--intent` — по смыслу раздела",
+        "`--limit` до 200; платишь за каждые 10 возвращённых адресов"
+      ]
     },
     {
       "name": "crawl",
@@ -94,7 +141,14 @@
       "billable": true,
       "limit": "1–20 страниц",
       "key_params": "url, limit, search (по тексту), selectPaths (по адресу), excludePaths, intent",
-      "when_not": "нужен только список адресов — map дешевле"
+      "when_not": "нужен только список адресов — map дешевле",
+      "skill": "srezai-site",
+      "cli": "srezai crawl https://docs.example.com --select-paths /api/ --limit 10",
+      "output": "pages[], skipped[], credits, meta",
+      "notes": [
+        "`--search` фильтрует по ТЕКСТУ страниц, `--select-paths` — по адресу",
+        "сначала `map`, потом `crawl` по нужному разделу — дешевле"
+      ]
     },
     {
       "name": "verify_claim",
@@ -105,7 +159,14 @@
       "billable": true,
       "limit": "2–5 источников",
       "key_params": "claim, query, language, timeRange, maxSources",
-      "when_not": "нужен обзор темы — это deep_research; нужен текст страницы — read_url"
+      "when_not": "нужен обзор темы — это deep_research; нужен текст страницы — read_url",
+      "skill": "srezai-research",
+      "cli": "srezai verify \"Node.js 22 — LTS\" --language ru --max-sources 3",
+      "output": "verdict, confidence, agreeing/disagreeing, evidence[] с цитатами, caveats",
+      "notes": [
+        "`unverified` и `mixed` — честный результат, а не сбой",
+        "каждая цитата сверена с текстом страницы"
+      ]
     },
     {
       "name": "answer_search",
@@ -116,7 +177,14 @@
       "billable": true,
       "limit": "2 (fast) – 10 (deep) страниц",
       "key_params": "query, depth (fast|balanced|deep), language",
-      "when_not": "нужен список ссылок — web_search в 20 раз дешевле; нужен один факт — тоже мимо"
+      "when_not": "нужен список ссылок — web_search в 20 раз дешевле; нужен один факт — тоже мимо",
+      "skill": "srezai-research",
+      "cli": "srezai answer \"вопрос\" --depth balanced",
+      "output": "answer, sources[] с relevance, confidence, pagesRead",
+      "notes": [
+        "нужен список ссылок — `search` дешевле в 20 раз",
+        "`fast`=3, `balanced`=5, `deep`=10 кредитов"
+      ]
     },
     {
       "name": "deep_research",
@@ -127,7 +195,14 @@
       "billable": true,
       "limit": "обычно 3–10 минут, до 42",
       "key_params": "query, ticket (дозабор готового ответа — бесплатно)",
-      "when_not": "нужен один факт или список ссылок — это web_search"
+      "when_not": "нужен один факт или список ссылок — это web_search",
+      "skill": "srezai-research",
+      "cli": "srezai deep \"тема\" --async → srezai deep status <ticket>",
+      "output": "async: талон 202; status: stage, progress, result, error",
+      "notes": [
+        "синхронный режим обрывается ~на 150-й секунде — для долгих тем только `--async`",
+        "дозабор по талону бесплатный"
+      ]
     },
     {
       "name": "yt_srt",
@@ -138,7 +213,14 @@
       "billable": true,
       "limit": "≤5 роликов за вызов, окно по from/to, таймкоды, до 200 тыс. символов на ролик — длинный ролик приходит целиком",
       "key_params": "videos (≤5), languages, timestamps, from, to, maxChars, speakers (разметка по говорящим)",
-      "when_not": "нужны видео с других площадок (VK, Rutube) — их нет; или нужен сам файл видео; для настоящего разделения по голосу speakers не подходит — это разметка по смыслу реплик"
+      "when_not": "нужны видео с других площадок (VK, Rutube) — их нет; или нужен сам файл видео; для настоящего разделения по голосу speakers не подходит — это разметка по смыслу реплик",
+      "skill": "srezai-transcript",
+      "cli": "srezai transcript https://youtu.be/ID --languages ru --timestamps",
+      "output": "results[]: текст/сегменты, credits, meta; слишком длинное — окно `--from`/`--to`",
+      "notes": [
+        "`--speakers` — разметка по смыслу реплик, не диаризация по голосу",
+        "только YouTube; VK/Rutube нет"
+      ]
     },
     {
       "name": "get_usage",
@@ -149,7 +231,14 @@
       "billable": false,
       "limit": "",
       "key_params": "verbose",
-      "when_not": "не нужен перед каждым вызовом"
+      "when_not": "не нужен перед каждым вызовом",
+      "skill": "srezai-web",
+      "cli": "srezai whoami (локально: есть ли ключ и куда ходит)",
+      "output": "баланс/квота/прайс — через MCP `get_usage` или кабинет",
+      "notes": [
+        "бесплатный вызов, квоту не тратит",
+        "в CLI 0.1 отдельной команды баланса нет"
+      ]
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "name": "srezai-skills",
+  "version": "0.5.0",
+  "description": "Веб-доступ для агентов через srezai: поиск, чтение страниц, карты сайтов, извлечение по схеме, проверка фактов, готовые ответы и глубокие исследования.",
+  "author": {
+    "name": "srezai",
+    "url": "https://srezai.ru"
+  },
+  "homepage": "https://srezai.ru/docs/skills",
+  "repository": "https://github.com/srezai-team/srezai-web-search-pro-skill",
+  "license": "Apache-2.0",
+  "keywords": [
+    "web-search",
+    "ai-agents",
+    "mcp",
+    "cli",
+    "runet",
+    "fact-checking"
+  ],
+  "skills": [
+    "./skills/srezai-web",
+    "./skills/srezai-search",
+    "./skills/srezai-read",
+    "./skills/srezai-site",
+    "./skills/srezai-research",
+    "./skills/srezai-transcript"
+  ]
+}

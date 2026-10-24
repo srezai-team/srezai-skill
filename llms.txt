@@ -1,7 +1,24 @@
 # srezai — web access for AI agents
 
-13 tools over MCP at https://srezai.ru/api/mcp. Runet-first coverage,
-PDF, screenshots, site crawls, schema extraction, claim verification with quotes.
+13 tools over MCP at https://srezai.ru/api/mcp; the same tools via CLI `srezai`
+(npm package `srezai-cli`, zero dependencies) and REST base https://srezai.ru.
+Runet-first coverage, PDF, screenshots, site crawls, schema extraction, claim
+verification with quotes, synthesized answers and deep research.
+
+## Skills (6 narrow skills, Apache-2.0)
+
+```bash
+npx skills add srezai-team/srezai-web-search-pro-skill
+```
+
+- srezai-web: веб-доступ для агентов: точка входа
+- srezai-search: найти ссылки, факты и картинки
+- srezai-read: прочитать страницу, вытащить поля, увидеть вёрстку
+- srezai-site: карта сайта и обход раздела
+- srezai-research: проверить факт, собрать ответ, исследовать тему
+- srezai-transcript: субтитры и текст видео YouTube
+
+## Tools
 
 - web_search: Search the web: links, facts, snippets. Price: 1 credit per call.
 - image_search: Find images and direct file URLs. Price: 1 credit per call.
@@ -17,4 +34,4 @@ PDF, screenshots, site crawls, schema extraction, claim verification with quotes
 - yt_srt: YouTube video text: transcripts, summaries, quotes. Price: 1 credit per video; 15 with speaker labeling.
 - get_usage: Check balance, remaining quota, spend and the price list. Price: free; does not use the quota.
 
-Generated from src/tools.json v0.4.2.
+Generated from src/tools.json v0.5.0.

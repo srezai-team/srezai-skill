@@ -1,0 +1,14 @@
+{
+  "name": "srezai-skills",
+  "owner": {
+    "name": "srezai",
+    "url": "https://srezai.ru"
+  },
+  "plugins": [
+    {
+      "name": "srezai-skills",
+      "source": "./",
+      "description": "6 узких скиллов srezai: веб-поиск, чтение страниц, карты сайтов, проверка фактов, ответы, субтитры YouTube. Работают через CLI srezai, MCP или REST."
+    }
+  ]
+}

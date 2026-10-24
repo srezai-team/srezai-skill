@@ -2,6 +2,39 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions are semantic.
 
+## [0.5.0] — 2026-10-24
+
+### Breaking
+
+- Один скилл `srezai-web` заменён **шестью узкими скиллами** в `skills/`:
+  `srezai-web` (вход: каналы, ключ, оплата, экономика, ошибки), `srezai-search`,
+  `srezai-read`, `srezai-site`, `srezai-research`, `srezai-transcript`.
+  Корневого `SKILL.md` больше нет — поставь набор заново:
+  `npx skills add srezai-team/srezai-web-search-pro-skill`.
+- Дефолтный путь — **CLI `srezai`** (пакет `srezai-cli`, ноль зависимостей);
+  MCP и REST остаются как fallback для хостов без консоли. Это уменьшает
+  контекст: описания набора ≈440 токенов (o200k), типовая задача — один скилл
+  плюс один справочник.
+
+### Added
+
+- `src/skills.json` — описания, привязка инструментов и бюджеты токенов.
+- `scripts/generate.mjs` собирает `skills/*/SKILL.md`, `references/*.md`,
+  `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `docs/tools.md`,
+  `llms.txt`, `VERSION`, `SHA256SUMS.txt` из `src/tools.json` + `src/skills.json`.
+- Поля `cli`, `output`, `notes`, `skill` в `src/tools.json` — единый источник для
+  справки CLI, скиллов и справочников.
+- Проверка бюджетов в генераторе: описания ≤1 860 символов суммарно,
+  SKILL.md ≤3 830 символов, справочник ≤4 800 символов.
+- `scripts/selftest.sh` проверяет frontmatter всех скиллов, битые ссылки и плейсхолдеры.
+- `scripts/install.sh` ставит весь набор в `$DSH_HOME/skills` и убирает старый
+  одиночный `srezai-web.md`.
+
+### Changed
+
+- README (en/ru) переписан под набор скиллов и CLI, с числами по контексту.
+- `check-drift.mjs` без изменений: сверяет каталог с живым MCP-сервером.
+
 ## [0.4.2] — 2026-10-23
 
 ### Changed
